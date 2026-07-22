@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio TKJ - Alfi Syahrin Gunawan</title>
+    <!-- FontAwesome untuk Logo Medsos & Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Library Animasi Scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #05050d;
+            --card-bg: rgba(15, 15, 30, 0.75);
+            --neon-cyan: #00f3ff;
+            --neon-pink: #ff007f;
+            --neon-purple: #a100ff;
+            --neon-yellow: #ffe600;
+            --neon-green: #00ff66;
+            --text-main: #ffffff;
+            --text-sub: #b0b0d0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* MODE EDIT (HANYA AKTIF SAAT PEMILIK LOG IN) */
+        [contenteditable="true"] {
+            outline: 2px dashed var(--neon-cyan) !important;
+            background: rgba(0, 243, 255, 0.15) !important;
+            border-radius: 6px;
+            padding: 2px 6px;
+        }
+
+        .admin-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+            background: rgba(5, 5, 13, 0.9);
+            border: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            box-shadow: 0 0 15px var(--neon-cyan);
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .admin-btn:hover {
+            background: var(--neon-cyan);
+            color: #000;
+            box-shadow: 0 0 25px var(--neon-cyan);
+            transform: scale(1.05);
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(5, 5, 13, 0.85);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        /* HERO / LANDING PAGE SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 140px 8% 60px;
+            gap: 40px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: var(--neon-purple);
+            filter: blur(180px);
+            top: 15%;
+            left: -80px;
+            z-index: -1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--neon-pink);
+            filter: blur(180px);
+            bottom: 10%;
+            right: -50px;
+            z-index: -1;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .badge-tkj {
+            display: inline-block;
+            padding: 6px 18px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.3);
+        }
+
+        .hero-text h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .glow-title {
+            color: var(--neon-pink);
+            text-shadow: 0 0 15px var(--neon-pink), 0 0 30px var(--neon-pink);
+        }
+
+        .hero-text h3 {
+            font-size: 1.3rem;
+            color: var(--neon-cyan);
+            margin-bottom: 18px;
+            text-shadow: 0 0 8px var(--neon-cyan);
+        }
+
+        .hero-text p {
+            color: var(--text-sub);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 0.98rem;
+        }
+
+        /* BINGKAI FOTO NEON */
+        .hero-img-box {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-img-box::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink), var(--neon-yellow));
+            border-radius: 50%;
+            z-index: -1;
+            animation: spinNeon 6s linear infinite;
+        }
+
+        @keyframes spinNeon {
+            0% { transform: rotate(0deg); filter: blur(12px); }
+            100% { transform: rotate(360deg); filter: blur(12px); }
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--bg-dark);
+        }
+
+        .upload-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        /* LOGO MEDSOS & WHATSAPP */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.4rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-8px) scale(1.1);
+        }
+
+        .social-btn.tiktok:hover { color: #00f2fe; border-color: #ff0050; box-shadow: 0 0 20px #ff0050, 0 0 10px #00f2fe; }
+        .social-btn.instagram:hover { color: #e1306c; border-color: #e1306c; box-shadow: 0 0 20px #e1306c; }
+        .social-btn.facebook:hover { color: #1877f2; border-color: #1877f2; box-shadow: 0 0 20px #1877f2; }
+        .social-btn.youtube:hover { color: #ff0000; border-color: #ff0000; box-shadow: 0 0 20px #ff0000; }
+        .social-btn.whatsapp:hover { color: #25d366; border-color: #25d366; box-shadow: 0 0 20px #25d366; }
+
+        /* SECTIONS GENERAL */
+        section {
+            padding: 90px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 90px;
+            height: 4px;
+            background: var(--neon-cyan);
+            margin: 12px auto 0;
+            box-shadow: 0 0 12px var(--neon-cyan);
+            border-radius: 2px;
+        }
+
+        /* GRID CARDS */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .neon-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            padding: 35px 25px;
+            border-radius: 18px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .neon-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 25px rgba(255, 0, 127, 0.4);
+        }
+
+        .card-icon {
+            font-size: 2.8rem;
+            color: var(--neon-cyan);
+            margin-bottom: 20px;
+            text-shadow: 0 0 12px var(--neon-cyan);
+        }
+
+        .neon-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+        }
+
+        .neon-card p {
+            color: var(--text-sub);
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* TOMBOL Buka Penjelasan / Modal */
+        .btn-more {
+            background: transparent;
+            border: 1px solid var(--neon-pink);
+            color: var(--neon-pink);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+            align-self: center;
+        }
+
+        .btn-more:hover {
+            background: var(--neon-pink);
+            color: #fff;
+            box-shadow: 0 0 15px var(--neon-pink);
+        }
+
+        /* CONTACT CARD */
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.25);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 650px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        .contact-item i {
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        /* POPUP MODAL ANIMASI PENJELASAN TKJ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background: var(--bg-dark);
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 30px var(--neon-cyan);
+            border-radius: 20px;
+            padding: 35px;
+            max-width: 580px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.6) rotate(-5deg) translateY(-50px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: scale(1) rotate(0deg) translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            color: var(--neon-pink);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-box h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-cyan);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        .modal-box p {
+            color: var(--text-sub);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-sub);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 130px;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tombol Pemilik Web (Password Protected) -->
+    <button class="admin-btn" onclick="toggleAdminMode()">
+        <i class="fa-solid fa-lock" id="admin-icon"></i> 
+        <span id="admin-text">Mode Pemilik (Locked)</span>
+    </button>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">ALFI.TKJ</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Tentang TKJ</a></li>
+            <li><a href="#office">Aplikasi Perkantoran</a></li>
+            <li><a href="#skills">Keahlian & Wi-Fi</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero / Landing Page Section -->
+    <section class="hero" id="home">
+        <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
+            <span class="badge-tkj editable" id="editable-badge">Teknik Komputer & Jaringan</span>
+            <h3>Halo, Saya</h3>
+            <h1 class="glow-title editable" id="editable-name">Alfi Syahrin Gunawan</h1>
+            <p class="editable" id="editable-bio">Selamat datang di portofolio digital saya. Sebagai praktisi Teknik Komputer dan Jaringan (TKJ), saya menguasai infrastruktur jaringan, konfigurasi Wi-Fi, perakitan hardware, pengelolaan server, serta aplikasi produktivitas perkantoran.</p>
+            
+            <!-- Logo Medsos Asli + Link -->
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@allz258?_r=1&_t=ZS-98D9QYY6FGr" target="_blank" class="social-btn tiktok" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/sc_alfisyah?igsh=c2cxeHJ1OXhuN2U3" target="_blank" class="social-btn instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61565463665418&mibextid=ZbWKwL" target="_blank" class="social-btn facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://youtube.com/@alfisyahringunawan?si=1FiOSNh-9Dh0ESJS" target="_blank" class="social-btn youtube" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://wa.me/6282125742699" target="_blank" class="social-btn whatsapp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <div class="hero-img-box" data-aos="zoom-in" data-aos-duration="1000">
+            <img src="https://via.placeholder.com/320/05050d/00f3ff?text=Foto+Alfi+Syahrin" alt="Foto Profil Alfi Syahrin Gunawan" class="hero-img" id="profile-img">
+            <label for="file-input" class="upload-overlay" id="upload-btn">
+                <i class="fa-solid fa-camera fa-2x" style="color: var(--neon-cyan);"></i>
+                <span style="font-size: 0.8rem; margin-top: 5px; color: #fff;">Ubah Foto</span>
+            </label>
+            <input type="file" id="file-input" accept="image/*" onchange="changeImage(event)">
+        </div>
+    </section>
+
+    <!-- Tentang TKJ Section -->
+    <section id="about">
+        <h2 class="section-title" data-aos="fade-up">Tentang TKJ</h2>
+        <div class="cards-grid">
+            <div class="neon-card" data-aos="fade-up" data-aos-delay="100">
+                <div>
+                    <i class="fa-solid fa-network-wired card-icon"></i>
+                    <h3 class="editable" id="editable-t1">Jaringan Komputer</h3>
+                    <p class="editable" id="editable-d1">Perancangan dan konfigurasi LAN, WAN, Router MikroTik, Switch Cisco, Topologi Jaringan, serta Manajemen Bandwidth.</p>
+                </div>
+                <button class="btn-more" onclick="openModal('Jaringan Komputer', 'Jaringan komputer dalam TKJ mempelajari cara menghubungkan antar komputer secara kabel maupun nirkabel. Konsep utama meliputi IP Addressing (IPv4/IPv6), Subnetting, Routing Statis & Dinamis, VLAN, VPN, serta optimalisasi alokasi bandwidth.')">Baca Detail</button>
+            </div>
+            <div class="neon-card" data-aos="fade-up" data-aos-delay="200">
+                <div>
+                    <i class="fa-solid fa-server card-icon"></i>
+                    <h3 class="editable" id="editable-t2">Administrasi Server</h3>
+                    <p class="editable" id="editable-d2">Pengelolaan sistem operasi server (Debian/Ubuntu/Windows Server), DNS, Web Server, FTP, dan Virtualisasi.</p>
+                </div>
+                <button class="btn-more" onclick="openModal('Administrasi Server', 'Pengelolaan server pusat data meliputi penginstalan OS Server berbasis Linux/Windows, pembuatan Domain Name System (DNS), FTP Server, Web Server (Nginx/Apache), Database Server, serta pengamanan akun pengguna.')">Baca Detail</button>
+            </div>
+            <div class="neon-card" data-aos="fade-up" data-aos-delay="300">
+                <div>
+                    <i class="fa-solid fa-microchip card-icon"></i>
+                    <h3 class="editable" id="editable-t3">Hardware & Maintenance</h3>
+                    <p class="editable" id="editable-d3">Perakitan PC, troubleshooting kerusakan komponen hardware, instalasi OS, serta perawatan infrastruktur IT.</p>
+                </div>
+                <button class="btn-more" onclick="openModal('Hardware & Maintenance', 'Bidang ini mencakup kemampuan bongkar pasang PC/Laptop, deteksi kerusakan hardware (RAM, GPU, Motherboard, Power Supply), perawatan kebersihan komponen, serta instalasi ulang sistem operasi.')">Baca Detail</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aplikasi Perkantoran Section -->
+    <section id="office">
+        <h2 class="section-title" data-aos="fade-up">Aplikasi Perkantoran</h2>
+        <div class="cards-grid">
+            <div class="neon-card" data-aos="flip-up" data-aos-delay="100">
+                <div>
+                    <i class="fa-solid fa-file-word card-icon" style="color: #0088ff;"></i>
+                    <h3 class="editable" id="editable-o1">Microsoft Word</h3>
+                    <p class="editable" id="editable-od1">Pembuatan dokumen formal, laporan teknis, pengerjaan Mail Merge, daftar isi otomatis, serta penyusunan tata letak standar industri.</p>
+                </div>
+                <button class="btn-more" onclick="openModal('Microsoft Word', 'Microsoft Word digunakan untuk dokumentasi teknis dalam bidang TKJ. Keahlian ini mencakup penyusunan proposal jaringan, laporan inventaris barang, otomatisasi surat dengan Mail Merge, penyusunan Daftar Isi & Gambar otomatis, serta penataan format dokumen secara rapi.')">Baca Detail</button>
+            </div>
+            <div class="neon-card" data-aos="flip-up" data-aos-delay="200">
+                <div>
+                    <i class="fa-solid fa-file-powerpoint card-icon" style="color: #ff5500;"></i>
+                    <h3 class="editable" id="editable-o2">Microsoft PowerPoint</h3>
+                    <p class="editable" id="editable-od2">Merancang presentasi interaktif, desain slide visual bertema IT, animasi transisi menarik, serta penyampaian ide proyek.</p>
+                </div>
+                <button class="btn-more" onclick="openModal('Microsoft PowerPoint', 'PowerPoint penting dalam mempresentasikan rancangan jaringan atau proyek IT kepada klien/atasan. Penguasaan mencakup pembuatan slide interaktif, penggunaan Slide Master, animasi transisi yang smooth, serta visualisasi topologi jaringan dalam bentuk slide yang aesthetic.')">Baca Detail</button>
+            </div>
+            <div class="neon-card" data-aos="flip-up" data-aos-delay="300">
+                <div>
+                    <i class="fa-solid fa-file-excel card-icon" style="color: #00cc66;"></i>
+                    <h3 class="editable" id="editable-o3">Microsoft Excel</h3>
+                    <p class="editable" id="editable-od3">Penggunaan rumus dasar & menengah (SUM, AVERAGE, VLOOKUP, IF), tabel data inventaris IT, serta kalkulasi anggaran biaya jaringan.</p>
+                </div>
+                <button class="btn-more" onclick="openModal('Microsoft Excel', 'Microsoft Excel membantu teknisi TKJ dalam rekapitulasi data. Materi mencakup perhitungan anggaran pembelian perangkat (RAB), otomatisasi data stok dengan rumus IF, VLOOKUP/XLOOKUP, logika IP Subnetting, serta pembuatan grafik pemantauan data.')">Baca Detail</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Keahlian & Konfigurasi Wi-Fi Section -->
+    <section id="skills">
+        <h2 class="section-title" data-aos="fade-up">Keahlian & Konfigurasi Wi-Fi</h2>
+        <div class="cards-grid">
+            <div class="neon-card" data-aos="zoom-in" data-aos-delay="100">
+                <div>
+                    <i class="fa-solid fa-wifi card-icon"></i>
+                    <h3 class="editable" id="editable-s1">Konfigurasi Wi-Fi & Router</h3>
+                    <p class="editable" id="editable-sd1">Pengaturan Access Point, pembatasan kecepatan (Bandwidth Management), pembagian SSID, serta penyettingan IP Gateway.</p>
+                </div>
+                <button class="btn-more" onclick="openModal('Konfigurasi Wi-Fi', 'Konfigurasi Wi-Fi meliputi penyettingan nama jaringan (SSID), keamanan enkripsi WPA2/WPA3 Personal/Enterprise, pengaturan alokasi IP DHCP Server untuk client, pembatasan kecepatan unduh/unggah via Queue MikroTik, serta isolasi jaringan Tamu (Guest Network).')">Baca Detail</button>
+            </div>
+            <div class="neon-card" data-aos="zoom-in" data-aos-delay="200">
+                <div>
+                    <i class="fa-solid fa-shield-halved card-icon"></i>
+                    <h3 class="editable" id="editable-s2">Keamanan Wi-Fi & Jaringan</h3>
+                    <p class="editable" id="editable-sd2">Penerapan MAC Address Filtering, penyembunyian SSID (Hide SSID), serta proteksi sistem dari akses tanpa izin.</p>
+                </div>
+                <button class="btn-more" onclick="openModal('Keamanan Wi-Fi', 'Mencegah pencurian akses Wi-Fi dengan memfilter alamat fisik perangkat (MAC Address Filtering), menyembunyikan nama SSID agar tidak terlihat sembarangan orang, serta mengaktifkan Firewall untuk mencegah serangan penyusup di jaringan nirkabel.')">Baca Detail</button>
+            </div>
+            <div class="neon-card" data-aos="zoom-in" data-aos-delay="300">
+                <div>
+                    <i class="fa-solid fa-cable-car card-icon"></i>
+                    <h3 class="editable" id="editable-s3">Pengkabelan Fiber & UTP</h3>
+                    <p class="editable" id="editable-sd3">Crimping kabel UTP RJ45 (Straight/Cross), penyambungan Fiber Optic (Splicing), serta tes sinyal jaringan.</p>
+                </div>
+                <button class="btn-more" onclick="openModal('Pengkabelan Jaringan', 'Pemasangan jalur data fisik seperti crimping kabel UTP menggunakan konektor RJ45 standar T568A/T568B, pengujian kabel dengan LAN Tester, hingga penyambungan kabel serat optik (Fiber Optic Splicing) untuk kecepatan transmisi data yang optimal.')">Baca Detail</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" data-aos="zoom-in-up">
+        <h2 class="section-title">Informasi Kontak</h2>
+        <div class="contact-card">
+            <p class="editable" id="editable-c-text">Silakan hubungi saya untuk konsultasi jaringan, perakitan unit komputer, konfigurasi Wi-Fi, atau kolaborasi proyek IT lainnya:</p>
+            <div class="contact-item">
+                <i class="fa-solid fa-user"></i>
+                <span class="editable" id="editable-c-name"><strong>Nama:</strong> Alfi Syahrin Gunawan</span>
+            </div>
+            <div class="contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <span class="editable" id="editable-c-phone"><strong>No HP / WA:</strong> 082125742699</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- POPUP MODAL ANIMASI PENJELASAN -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title">Judul Penjelasan</h3>
+            <p id="modal-desc">Deskripsi detail materi akan ditampilkan di sini dengan efek animasi pop-up yang estetik.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Alfi Syahrin Gunawan. Portofolio TKJ Aesthetic Neon.</p>
+    </footer>
+
+    <!-- JS Library & Logika Penyimpanan Permanen -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: false, mirror: true });
+
+        const ADMIN_PASSWORD = "12345"; 
+        let isEditActive = false;
+
+        // FUNGSI LOAD DATA PERMANEN DARI LOCAL STORAGE
+        window.onload = function() {
+            const savedImage = localStorage.getItem('alfi_profile_img');
+            if (savedImage) {
+                document.getElementById('profile-img').src = savedImage;
+            }
+
+            const editables = document.querySelectorAll('.editable');
+            editables.forEach(el => {
+                const savedText = localStorage.getItem('alfi_text_' + el.id);
+                if (savedText && el.id) {
+                    el.innerHTML = savedText;
+                }
+                
+                el.addEventListener('input', function() {
+                    if(el.id) {
+                        localStorage.setItem('alfi_text_' + el.id, el.innerHTML);
+                    }
+                });
+            });
+        };
+
+        // FUNGSI LOCK & UNLOCK PASSWORD
+        function toggleAdminMode() {
+            if (!isEditActive) {
+                let inputPass = prompt("Masukkan Password Pemilik untuk membuka Mode Edit:");
+                if (inputPass === ADMIN_PASSWORD) {
+                    isEditActive = true;
+                    enableEditing(true);
+                    alert("Akses Edit Terbuka! Anda dapat mengedit teks dan foto secara langsung. Perubahan tersimpan secara otomatis.");
+                } else if (inputPass !== null) {
+                    alert("Password Salah! Pengunjung tidak diizinkan merubah isi web ini.");
+                }
+            } else {
+                isEditActive = false;
+                enableEditing(false);
+                alert("Mode Edit Ditutup & Dikunci Kembali.");
+            }
+        }
+
+        function enableEditing(status) {
+            const editables = document.querySelectorAll('.editable');
+            const uploadBtn = document.getElementById('upload-btn');
+            const adminText = document.getElementById('admin-text');
+            const adminIcon = document.getElementById('admin-icon');
+
+            editables.forEach(el => {
+                el.contentEditable = status;
+            });
+
+            if (status) {
+                uploadBtn.style.display = 'flex';
+                adminText.innerText = 'Mode Edit: AKTIF';
+                adminIcon.className = 'fa-solid fa-unlock';
+            } else {
+                uploadBtn.style.display = 'none';
+                adminText.innerText = 'Mode Pemilik (Locked)';
+                adminIcon.className = 'fa-solid fa-lock';
+            }
+        }
+
+        // FUNGSI MENGUBAH DAN MENYIMPAN FOTO PERMANEN
+        function changeImage(event) {
+            if (!isEditActive) return;
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageData = e.target.result;
+                    document.getElementById('profile-img').src = imageData;
+                    localStorage.setItem('alfi_profile_img', imageData);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // FUNGSI ANIMASI POP-UP / MODAL DETAIL PENJELASAN
+        function openModal(title, desc) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-desc').innerText = desc;
+            document.getElementById('modal-overlay').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('active');
+        }
+
+        // Tutup modal jika mengklik area luar
+        window.onclick = function(event) {
+            const modalOverlay = document.getElementById('modal-overlay');
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        };
+    </script>
+</body>
+</html>
